@@ -1,4 +1,4 @@
-# Realtime Vote
+# GO Realtime Vote
 Rest-api created for a startup weekend event for showing realtime votes for projects and ideas suggested by participants 
 
 # Project Flow
