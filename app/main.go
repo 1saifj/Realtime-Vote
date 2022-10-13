@@ -9,6 +9,9 @@ import (
 	"swn_realtime_vote/user/delivery/http/middleware"
 	"swn_realtime_vote/user/repository"
 	"swn_realtime_vote/user/usecase"
+	vhttp "swn_realtime_vote/vote/delivery/http/controller"
+	vrepo "swn_realtime_vote/vote/repository"
+	vuc "swn_realtime_vote/vote/usecase"
 )
 
 func main() {
@@ -23,7 +26,10 @@ func main() {
 	}
 	userRepo := repository.NewUserRepository(db)
 	useruc := usecase.NewUserUsecase(userRepo)
+	voteRepo := vrepo.NewVoteRepository(db)
+	voteuc := vuc.NewVoteUsecase(voteRepo)
 	um := middleware.UserMiddleware{}
 	http.NewUserController(eo, useruc, um)
+	vhttp.NewVoteController(eo, voteuc)
 	eo.Logger.Fatal(eo.Start("0.0.0.0:8080"))
 }

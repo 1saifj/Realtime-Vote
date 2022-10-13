@@ -5,14 +5,6 @@ import (
 	"swn_realtime_vote/domain"
 )
 
-type ErrorResponse struct {
-	Message string `json:"message"`
-}
-
-func (e ErrorResponse) Error() string {
-	return e.Message
-}
-
 type userRepository struct {
 	DB *gorm.DB
 }
